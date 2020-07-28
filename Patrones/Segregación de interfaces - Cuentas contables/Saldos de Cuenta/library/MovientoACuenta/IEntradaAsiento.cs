@@ -15,7 +15,7 @@ namespace Saldos_de_Cuenta.library.MovientoACuenta
 
         string Detalle { get; set; }
 
-        IComportamiento Comportamiento { get; set; }
+        IComportamiento Comportamiento { get;  set; }
 
         DateTime FechaFactura { get; set; }
 

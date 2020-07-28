@@ -9,21 +9,20 @@ namespace Saldos_de_Cuenta.library
 {
     public class CuentaConSaldo : CuentaBase, ICuentaConSaldo
     {
-        public List<IEntradaAsiento> EntradaAsientos { get; set;  }
+        public List<IEntradaAsiento> EntradaAsientos { get; set;  } = new List<IEntradaAsiento>();
 
-        public CuentaConSaldo(List<IEntradaAsiento> entradaAsientos)
+        private IComportamiento _comportamiento { get; set; }
+
+        public CuentaConSaldo(IComportamiento comportamiento)
         {
-            EntradaAsientos = entradaAsientos; 
+            //EntradaAsientos = entradaAsientos;
+            _comportamiento = comportamiento; 
         }
 
         public decimal Creditos(Moneda moneda)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool Cuadrada()
-        {
-            throw new NotImplementedException();
+            var output = EntradaAsientos.Where(x => x.Comportamiento is Credito && x.Moneda == moneda).Sum(x => x.Monto);
+            return output;
         }
 
         public decimal Debitos(Moneda moneda)
@@ -31,6 +30,11 @@ namespace Saldos_de_Cuenta.library
             var output = EntradaAsientos.Where(x => x.Comportamiento is Debito && x.Moneda == moneda).Sum(x => x.Monto);
             return output; 
         }
+        public bool Cuadrada()
+        {
+            throw new NotImplementedException();
+        }
+
 
         public decimal SaldoActual(Moneda moneda)
         {

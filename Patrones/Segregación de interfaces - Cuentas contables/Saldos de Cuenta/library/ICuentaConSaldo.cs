@@ -4,23 +4,14 @@ using System.Collections.Generic;
 
 namespace Saldos_de_Cuenta.library
 {
-    public interface ICuentaConSaldo : ICuenta
+    public interface ICuentaConSaldo : ICuenta, ISaldo
     {
-        List<IEntradaAsiento> EntradaAsientos { get; set; }
+        List<IEntradaAsiento> EntradaAsientos { get; set; } 
 
-        decimal SaldoAnterior(Moneda moneda); 
+        decimal SaldoAnterior(Moneda moneda);
 
         decimal SaldoActual(Moneda moneda);
 
         decimal SaldoMensual(Moneda moneda);
-
-        decimal Creditos(Moneda moneda);
-
-        decimal Debitos(Moneda moneda);
-
-        bool TieneMovimientos();
-        
-        bool Cuadrada();
-
     }
 }

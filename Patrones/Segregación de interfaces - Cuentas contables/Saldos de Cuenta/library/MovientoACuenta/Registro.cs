@@ -21,7 +21,7 @@ namespace Saldos_de_Cuenta.library.MovientoACuenta
 
         public decimal Monto { get; set; }
 
-        public IComportamiento Comportamiento { get; set; }
+        public IComportamiento Comportamiento { get;  set; }
 
         public decimal MontoTipoCambio { get; set; }
 
@@ -30,6 +30,8 @@ namespace Saldos_de_Cuenta.library.MovientoACuenta
             Comportamiento = comportamiento;
         }
 
-
+        public Registro()
+        {
+        }
     }
 }
