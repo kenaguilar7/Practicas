@@ -18,14 +18,5 @@ namespace EFDataAccessLibrary.Models
         [MaxLength(100)]
         public string City { get; set; }
         
-        [Required]
-        [MaxLength(50)]
-        public string State { get; set; }
-     
-        [Required]
-        [MaxLength(10)]
-        [Column(TypeName = "varchar(10)")]
-        public string ZipCode { get; set; }
-
     }
 }
