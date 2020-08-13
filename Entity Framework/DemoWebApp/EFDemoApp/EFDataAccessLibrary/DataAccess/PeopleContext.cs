@@ -17,6 +17,6 @@ namespace EFDataAccessLibrary.DataAccess
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Email> Emailes { get; set; }
         public DbSet<Cuenta> Cuentas { get; set; }
-
+        public DbSet<CuentaDos> CuentaDos { get; set; }
     }
 }

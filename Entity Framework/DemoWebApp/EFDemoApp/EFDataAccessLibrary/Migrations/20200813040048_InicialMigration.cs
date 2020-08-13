@@ -1,19 +1,53 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EFDataAccessLibrary.Migrations
 {
-    public partial class InitialDBCreation : Migration
+    public partial class InicialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Cuenta",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Memo = table.Column<string>(nullable: true),
+                    Debit = table.Column<decimal>(nullable: false),
+                    Credit = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cuenta", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CuentaDos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Memo = table.Column<string>(nullable: true),
+                    DocDate = table.Column<DateTime>(nullable: false),
+                    Credit = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CuentaDos", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "People",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true)
+                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(maxLength: 50, nullable: false),
+                    Age = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,10 +60,8 @@ namespace EFDataAccessLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StreetAddress = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    ZipCode = table.Column<string>(nullable: true),
+                    StreetAddress = table.Column<string>(maxLength: 200, nullable: false),
+                    City = table.Column<string>(maxLength: 100, nullable: false),
                     PersonId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -49,7 +81,7 @@ namespace EFDataAccessLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EmailAddress = table.Column<string>(nullable: true),
+                    EmailAddress = table.Column<string>(maxLength: 200, nullable: false),
                     PersonId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -78,6 +110,12 @@ namespace EFDataAccessLibrary.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "Cuenta");
+
+            migrationBuilder.DropTable(
+                name: "CuentaDos");
 
             migrationBuilder.DropTable(
                 name: "Emailes");
