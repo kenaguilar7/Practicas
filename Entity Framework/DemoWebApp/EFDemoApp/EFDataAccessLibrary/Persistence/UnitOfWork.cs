@@ -1,5 +1,6 @@
 ﻿using EFDataAccessLibrary.Core;
-using EFDataAccessLibrary.Services;
+using EFDataAccessLibrary.Models;
+using EFDataAccessLibrary.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,23 +10,23 @@ namespace EFDataAccessLibrary.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _context; 
-        public IPersonRepository PeopleRepository { get; private set; }
+        private readonly DbContext _context;
 
         public UnitOfWork(DbContext context)
         {
             _context = context;
-            PeopleRepository = new PersonRepository(_context); 
         }
+
+        public IRepository<Person> PeopleRepository => new Repository<Person>(_context);
 
         public int Complete()
         {
-            return _context.SaveChanges(); 
+            return _context.SaveChanges();
         }
 
         public void Dispose()
         {
-            _context.Dispose(); 
+            _context.Dispose();
         }
     }
 }

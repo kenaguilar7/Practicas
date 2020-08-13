@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using EFDataAccessLibrary.Core;
 using EFDataAccessLibrary.Models;
-using EFDataAccessLibrary.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -30,7 +29,7 @@ namespace ApiTest.Controllers
         public IEnumerable<Person> Get()
         {
             //Create();
-            var personList = _unitOfWork.PeopleRepository.GetAll();
+            var personList = _unitOfWork.PeopleRepository.GetAll(); 
             return personList; 
         }
 
@@ -57,7 +56,7 @@ namespace ApiTest.Controllers
             person.Addresses = address;
             person.EmailAddresses = emails;
 
-            _unitOfWork.PeopleRepository.Add(person);
+            _unitOfWork.PeopleRepository.Insert(person);
             _unitOfWork.Complete();
 
         }

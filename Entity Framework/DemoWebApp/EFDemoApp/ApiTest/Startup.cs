@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using EFDataAccessLibrary.Core;
 using EFDataAccessLibrary.DataAccess;
 using EFDataAccessLibrary.Persistence;
-using EFDataAccessLibrary.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,8 +35,12 @@ namespace ApiTest
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
 
+
             services.AddScoped<DbContext, PeopleContext>(); 
+
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
             services.AddControllers();
         }

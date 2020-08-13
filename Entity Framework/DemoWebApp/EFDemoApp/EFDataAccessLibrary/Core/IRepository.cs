@@ -8,17 +8,18 @@ namespace EFDataAccessLibrary.Repository
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        TEntity Get(int id);
-        IEnumerable<TEntity> GetAll();
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        IEnumerable<TEntity> GetAll(); 
 
-
-        TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
-        void Add(TEntity entity);
-        void AddRange(IEnumerable<TEntity> entities);
-
-        void Remove(TEntity entity);
-        void RemoveRange(IEnumerable<TEntity> entities);
+        TEntity GetById(int id);
+        
+        void Insert(TEntity entity);
+        
+        void Update(TEntity entity);
+        
+        void Delete(TEntity entity);
+        
+     
+        IQueryable<TEntity> GetAllIncluding(params Expression<Func<TEntity, object>>[] incluideProperties);
 
     }
 }

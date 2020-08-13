@@ -1,4 +1,5 @@
-﻿using EFDataAccessLibrary.Services;
+﻿using EFDataAccessLibrary.Models;
+using EFDataAccessLibrary.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ namespace EFDataAccessLibrary.Core
 {
     public interface IUnitOfWork: IDisposable
     {
-        IPersonRepository PeopleRepository { get; }
+        IRepository<Person> PeopleRepository { get; }
         int Complete(); 
     }
 }
