@@ -22,5 +22,8 @@ namespace EFDataAccessLibrary.Models
         public List<Address> Addresses { get; set; } = new List<Address>();
         public List<Email> EmailAddresses { get; set; } = new List<Email>();
 
+        [MaxLength(5)]
+        public string ADNType { get; set;  }
+
     }
 }
