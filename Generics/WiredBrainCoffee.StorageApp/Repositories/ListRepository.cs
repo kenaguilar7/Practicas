@@ -5,10 +5,15 @@ using WiredBrainCoffee.StorageApp.Entities;
 
 namespace WiredBrainCoffee.StorageApp.Repositories
 {
-    public class GenericRepository<T> where T : class, IEntity, new()
+    public class ListRepository<T>: IRepository<T> where T : class, IEntity, new()
     {
         private readonly List<T> _entities = new List<T>();
-        
+
+        public IEnumerable<T> GetAll()
+        {
+            return _entities.ToList(); 
+        }
+
         public T CreateItem()
         {
             return new T();
@@ -25,10 +30,14 @@ namespace WiredBrainCoffee.StorageApp.Repositories
             _entities.Add(entity);
         }
 
+        public void Remove(T entity)
+        {
+            _entities.Remove(entity); 
+        }
+
         public void Save()
         {
-            foreach (var entity in _entities)
-                Console.WriteLine(entity);
+            // Everything is saved already
         }
     }
 }
